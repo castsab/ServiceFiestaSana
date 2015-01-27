@@ -13,6 +13,11 @@ $service_name = $_POST['service_name'];
 
 switch ($service_name) {
     
+    case 'campaign':{
+       $json = $C_Json->getJsonCampaign(); 
+    }
+    break;
+    
     case 'zones':
     {
         $json = $C_Json->getJsonZones();

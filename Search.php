@@ -4,6 +4,22 @@ include_once 'Connect.php';
 
 class Search extends Connect {
     
+    
+    public function getCampaign() {
+
+        $sql = 'select 
+                    CAMP_ID As CAMP_ID,
+                    CAMP_NOMBRE As CAMP_NOMBRE,
+                    CAMP_URL_IMAGEN As CAMP_URL_IMAGEN 
+               from 
+                    T_CAMPANA 
+               WHERE 
+                    CAMP_ID=1 ';
+        
+        $rs = $this->getRun($sql);
+        return $rs;
+    }
+    
     public function getZones() {
 
         $sql = 'select ZONA_ID As ZONA_ID,ZONA_NOMBRE As ZONA_NOMBRE from T_ZONA';

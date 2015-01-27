@@ -8,6 +8,26 @@ class Json extends Search {
         return json_encode($array,JSON_PRETTY_PRINT);
     }
     
+    public function getJsonCampaign(){
+        
+        $a_campaign = array();
+        
+        $rs = $this->getCampaign();
+
+        $i = 0;
+
+        while ($rw = oci_fetch_array($rs,OCI_ASSOC)) {
+
+            $a_campaign[$i]['CAMP_ID'] = $rw['CAMP_ID'];
+            $a_campaign[$i]['CAMP_NOMBRE'] = utf8_encode($rw['CAMP_NOMBRE']);
+            $a_campaign[$i]['CAMP_URL_IMAGEN'] = utf8_encode($rw['CAMP_URL_IMAGEN']);
+
+            $i++;
+        }
+
+        return $this->getConvertArray($a_campaign);
+    }
+    
     public function getJsonZones(){
         
         $a_zones = array();
