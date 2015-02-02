@@ -10,7 +10,8 @@ class Search extends Connect {
         $sql = 'select 
                     CAMP_ID As CAMP_ID,
                     CAMP_NOMBRE As CAMP_NOMBRE,
-                    CAMP_URL_IMAGEN As CAMP_URL_IMAGEN 
+                    CAMP_URL_IMAGEN As CAMP_URL_IMAGEN,
+                    CAMP_DESCRIPCION As CAMP_DESCRIPCION
                from 
                     T_CAMPANA 
                WHERE 

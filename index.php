@@ -9,7 +9,7 @@ include_once 'Json.php';
 $C_Json = new Json();
 
 $json = '';
-$service_name = $_POST['service_name'];
+$service_name = $_REQUEST['service_name'];
 
 switch ($service_name) {
     
@@ -32,7 +32,7 @@ switch ($service_name) {
 
     case 'sites_zone':
     {
-        $id = $_POST['id_zone'];
+        $id = $_REQUEST['id_zone'];
         $cond = 'ZONA_ID = '.$id.' ';
         $json = $C_Json->getJsonSites($cond);
     }
@@ -40,7 +40,7 @@ switch ($service_name) {
 
     case 'sites_locality':
     {
-        $id = $_POST['id_locality'];
+        $id = $_REQUEST['id_locality'];
         $cond = 'LOCA_ID = '.$id.' ';
         $json = $C_Json->getJsonSites($cond);
     }
@@ -48,7 +48,7 @@ switch ($service_name) {
     
     case 'search_sites':
     {
-        $find = $_POST['find'];
+        $find = $_REQUEST['find'];
         $cond = "HEST_RAZONSOCIAL LIKE '%".$find."%' ";
         $json = $C_Json->getJsonSites($cond);
     }

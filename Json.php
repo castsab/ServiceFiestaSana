@@ -8,6 +8,45 @@ class Json extends Search {
         return json_encode($array,JSON_PRETTY_PRINT);
     }
     
+    public function getConsultNameEntityDistrital($id_entidad){
+        
+        $ent_distrital = "";
+        
+        switch ($id_entidad) {
+                    
+            case '3':{
+                $ent_distrital = "Bomberos";
+            }break;
+
+            case '5':{
+                $ent_distrital = "Salud";
+            }break;
+
+            case '6':{
+                $ent_distrital = "Ambiente";
+            }break;
+
+            case '19':{
+                $ent_distrital = "Gobierno";
+            }break;
+
+            case '22':{
+                $ent_distrital = "Camara";
+            }break;
+
+            case '23':{
+                $ent_distrital = "Sayco";
+            }break;
+
+            default:{
+                $ent_distrital = $id_entidad;
+            }break;
+                
+        }
+        
+        return $ent_distrital;
+    }
+    
     public function getJsonCampaign(){
         
         $a_campaign = array();
@@ -21,7 +60,8 @@ class Json extends Search {
             $a_campaign[$i]['CAMP_ID'] = $rw['CAMP_ID'];
             $a_campaign[$i]['CAMP_NOMBRE'] = utf8_encode($rw['CAMP_NOMBRE']);
             $a_campaign[$i]['CAMP_URL_IMAGEN'] = utf8_encode($rw['CAMP_URL_IMAGEN']);
-
+            $a_campaign[$i]['CAMP_DESCRIPCION'] = utf8_encode($rw['CAMP_DESCRIPCION']);
+            
             $i++;
         }
 
@@ -105,15 +145,16 @@ class Json extends Search {
                 
                 $a_visit = $this->getConceptVisitByEntity($row['ID_VISITA']);
                 
-                
                 $a_visit['ESTADO_VISITA'] = ($a_visit['ESTADO_VISITA'] == 'CUMPLE')?'true':'false';
                 
-                $a_sites[$i][$row['ID_ENTIDAD']]['ID_ENTIDAD'] = $row['ID_ENTIDAD'];
-                $a_sites[$i][$row['ID_ENTIDAD']]['ENTIDAD'] = $a_visit['NOMBRE_ENTIDAD'];
-                $a_sites[$i][$row['ID_ENTIDAD']]['ID_VISITA'] = $row['ID_VISITA'];
-                $a_sites[$i][$row['ID_ENTIDAD']]['status'] = utf8_encode($a_visit['ESTADO_VISITA']);
-                $a_sites[$i][$row['ID_ENTIDAD']]['titulo'] = utf8_encode($a_visit['NOMBRE_ENTIDAD']);
-                $a_sites[$i][$row['ID_ENTIDAD']]['concepto'] = utf8_encode($a_visit['CONCEPTO_VISITA']);
+                $ent_distrital = $this->getConsultNameEntityDistrital($row['ID_ENTIDAD']);
+                
+                $a_sites[$i][$ent_distrital]['ID_ENTIDAD'] = $row['ID_ENTIDAD'];
+                $a_sites[$i][$ent_distrital]['ENTIDAD'] = $a_visit['NOMBRE_ENTIDAD'];
+                $a_sites[$i][$ent_distrital]['ID_VISITA'] = $row['ID_VISITA'];
+                $a_sites[$i][$ent_distrital]['status'] = utf8_encode($a_visit['ESTADO_VISITA']);
+                $a_sites[$i][$ent_distrital]['titulo'] = utf8_encode($a_visit['NOMBRE_ENTIDAD']);
+                $a_sites[$i][$ent_distrital]['concepto'] = utf8_encode($a_visit['CONCEPTO_VISITA']);
                 
                 $j++;
             }
