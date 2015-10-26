@@ -51,7 +51,7 @@ class Search extends Connect {
                     NOM_LOCALIDAD As NOMBRE_LOCALIDAD,
                     HEST_WEBPAGE As PAGINA_WEB
                 from 
-                    VT_ESTAB_APP_MOVIL
+                    V_ESTAB_APP_MOVIL
                 WHERE 
                     '.$cond.'
                     GROUP BY ESTA_MATRICULA,HEST_RAZONSOCIAL,HEST_DIRCOMERCIAL,HEST_TEL,HEST_MAIL,ESTA_COORDENADA_X,ESTA_COORDENADA_Y,ZONA_ID,ZONA_NOMBRE,LOCA_ID,NOM_LOCALIDAD,HEST_WEBPAGE
@@ -68,7 +68,7 @@ class Search extends Connect {
                     VISIT_ID As ID_VISITA,
                     ENTI_ID As ID_ENTIDAD
                 from 
-                    VT_ESTAB_APP_MOVIL
+                    V_ESTAB_APP_MOVIL
                 WHERE 
                     '.$cond.' And ESTA_MATRICULA='.$numero_matricula.' ';
        
@@ -84,7 +84,7 @@ class Search extends Connect {
                     COVI_NOM As ESTADO_VISITA,
                     CAVI_NOM As CONCEPTO_VISITA
                 from 
-                    VT_ESTAB_APP_MOVIL
+                    V_ESTAB_APP_MOVIL
                 WHERE 
                     VISIT_ID='.$id_visita.' AND ROWNUM  = 1 ';
                     
