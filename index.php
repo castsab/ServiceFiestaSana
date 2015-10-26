@@ -49,7 +49,7 @@ switch ($service_name) {
     case 'search_sites':
     {
         $find = $_REQUEST['find'];
-        $cond = "HEST_RAZONSOCIAL LIKE '%".$find."%' ";
+        $cond = "UPPER(HEST_RAZONSOCIAL) LIKE UPPER('%".$find."%') ";
         $json = $C_Json->getJsonSites($cond);
     }
     break;
